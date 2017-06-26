@@ -3,7 +3,7 @@
  All the codes are theoretical codes。
 *** 
 ## 06.26.2017 upload log  
-* added some *asm files* for process:  
+* added some **asm files** for process:  
 * Creat_kernal_threed.asm  
 * Creat_process.asm  
 * Creat_thread.asm  
