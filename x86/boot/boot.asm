@@ -2,25 +2,25 @@
 	org  0x7c00
 	
 	stack_base				equ	07c00h	;
-	file_addr_segment		equ	0x1000	;文件被加载到的位�?段地址)
-	file_addr_offset		equ	0x0		;文件被加载到的位�?偏移地址)
-	RootDirSectors			equ	14		;根目录占用空�?	root_sector				equ	19		;根目录的第一个扇区号
-	SectorNoOfFAT1			equ	1		;FAT1 的第一个扇区号 = BPB_RsvdSecCnt
+	file_addr_segment		equ	0x1000	;æ–‡ä»¶è¢«åŠ è½½åˆ°çš„ä½ç½?æ®µåœ°å€)
+	file_addr_offset		equ	0x0		;æ–‡ä»¶è¢«åŠ è½½åˆ°çš„ä½ç½?åç§»åœ°å€)
+	RootDirSectors			equ	14		;æ ¹ç›®å½•å ç”¨ç©ºé—?	root_sector				equ	19		;æ ¹ç›®å½•çš„ç¬¬ä¸€ä¸ªæ‰‡åŒºå·
+	SectorNoOfFAT1			equ	1		;FAT1 çš„ç¬¬ä¸€ä¸ªæ‰‡åŒºå· = BPB_RsvdSecCnt
 	DeltaSectorNo			equ	17
 	
-	;下面�?FAT12 磁盘的头
+	;ä¸‹é¢æ˜?FAT12 ç£ç›˜çš„å¤´
 	jmp short boot_start
 	nop
-	BS_OEMName		DB 'GhosBird'	; OEM String, 必须 8 个字�?	BPB_BytsPerSec	DW 512			; 每扇区字节数
-	BPB_SecPerClus	DB 1			; 每簇多少扇区
-	BPB_RsvdSecCnt	DW 1			; Boot 记录占用多少扇区
-	BPB_NumFATs		DB 2			; 共有多少 FAT �?	BPB_RootEntCnt	DW 224			; 根目录文件数最大�?	BPB_TotSec16	DW 2880			; 逻辑扇区总数
-	BPB_Media		DB 0xF0			; 媒体描述�?	BPB_FATSz16		DW 9			; 每FAT扇区�?	BPB_SecPerTrk	DW 18			; 每磁道扇区数
-	BPB_NumHeads	DW 2			; 磁头�?面数)
-	BPB_HiddSec		DD 0			; 隐藏扇区�?	BPB_TotSec32	DD 0			; 如果 wTotalSectorCount �?0 由这个值记录扇区数
-	BS_DrvNum		DB 0			; 中断 13 的驱动器�?	BS_Reserved1	DB 0			; 未使�?	BS_BootSig		DB 29h			; 扩展引导标记 (29h)
-	BS_VolID		DD 0			; 卷序列号
-	BS_VolLab		DB 'GhostBirdOS'; 卷标, 必须 11 个字�?	BS_FileSysType	DB 'FAT12   '	; 文件系统类型, 必须 8个字�? 
+	BS_OEMName		DB 'AN'	; OEM String, å¿…é¡» 8 ä¸ªå­—èŠ?	BPB_BytsPerSec	DW 512			; æ¯æ‰‡åŒºå­—èŠ‚æ•°
+	BPB_SecPerClus	DB 1			; æ¯ç°‡å¤šå°‘æ‰‡åŒº
+	BPB_RsvdSecCnt	DW 1			; Boot è®°å½•å ç”¨å¤šå°‘æ‰‡åŒº
+	BPB_NumFATs		DB 2			; å…±æœ‰å¤šå°‘ FAT è¡?	BPB_RootEntCnt	DW 224			; æ ¹ç›®å½•æ–‡ä»¶æ•°æœ€å¤§å€?	BPB_TotSec16	DW 2880			; é€»è¾‘æ‰‡åŒºæ€»æ•°
+	BPB_Media		DB 0xF0			; åª’ä½“æè¿°ç¬?	BPB_FATSz16		DW 9			; æ¯FATæ‰‡åŒºæ•?	BPB_SecPerTrk	DW 18			; æ¯ç£é“æ‰‡åŒºæ•°
+	BPB_NumHeads	DW 2			; ç£å¤´æ•?é¢æ•°)
+	BPB_HiddSec		DD 0			; éšè—æ‰‡åŒºæ•?	BPB_TotSec32	DD 0			; å¦‚æžœ wTotalSectorCount æ˜?0 ç”±è¿™ä¸ªå€¼è®°å½•æ‰‡åŒºæ•°
+	BS_DrvNum		DB 0			; ä¸­æ–­ 13 çš„é©±åŠ¨å™¨å?	BS_Reserved1	DB 0			; æœªä½¿ç”?	BS_BootSig		DB 29h			; æ‰©å±•å¼•å¯¼æ ‡è®° (29h)
+	BS_VolID		DD 0			; å·åºåˆ—å·
+	BS_VolLab		DB 'GhostBirdOS'; å·æ ‡, å¿…é¡» 11 ä¸ªå­—èŠ?	BS_FileSysType	DB 'FAT12   '	; æ–‡ä»¶ç³»ç»Ÿç±»åž‹, å¿…é¡» 8ä¸ªå­—èŠ? 
 
 boot_start:	
 	mov		ax,cs
@@ -29,30 +29,30 @@ boot_start:
 	mov		ss,ax
 	mov		sp,stack_base
 
-	;清屏
+	;æ¸…å±
 	mov		ax,0600h
 	mov		bx,0700h
 	mov		cx,0
 	mov		dx,0184fh
 	int		10h
-	;显示"Booting"
+	;æ˜¾ç¤º"Booting"
 	mov		dh,0
 	call	DispStr
-	;软驱复位
+	;è½¯é©±å¤ä½
 	xor		ah,ah
 	xor		dl,dl
 	int		13h
 	
-	;下面在软盘的根目录寻找文�?	mov		word[read_sector],root_sector
+	;ä¸‹é¢åœ¨è½¯ç›˜çš„æ ¹ç›®å½•å¯»æ‰¾æ–‡ä»?	mov		word[read_sector],root_sector
 begin_search:
-	;判断根目录是否读完，读完表示没有找到文件
+	;åˆ¤æ–­æ ¹ç›®å½•æ˜¯å¦è¯»å®Œï¼Œè¯»å®Œè¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶
 	cmp		word[root_sector_num],0
 	jz		nofound
 	dec		word[root_sector_num]
 	mov		ax,file_addr_segment
 	mov		es,ax										;es <- file_addr_segment
-	mov		bx,file_addr_offset							;bx <- file_addr_offset	于是, es:bx = file_addr_segment:file_addr_offset
-	mov		ax,[read_sector]								;ax <- Root Directory 中的�?Sector �?	mov		cl,1
+	mov		bx,file_addr_offset							;bx <- file_addr_offset	äºŽæ˜¯, es:bx = file_addr_segment:file_addr_offset
+	mov		ax,[read_sector]								;ax <- Root Directory ä¸­çš„æŸ?Sector å?	mov		cl,1
 	call	ReadSector
 
 	mov		si,KERNELFileName							;ds:si -> "KERNEL  "
@@ -60,56 +60,56 @@ begin_search:
 	cld
 	mov		dx,10h
 
-;循环次数控制
+;å¾ªçŽ¯æ¬¡æ•°æŽ§åˆ¶
 LABEL_SEARCH_FOR_KERNELBIN:
-	cmp		dx,0										;┓循环次数控�?
-	jz		next_sector			;┣如果已经读完了一�?Sector,
-	dec		dx											;┛就跳到下一�?Sector
+	cmp		dx,0										;â”“å¾ªçŽ¯æ¬¡æ•°æŽ§åˆ?
+	jz		next_sector			;â”£å¦‚æžœå·²ç»è¯»å®Œäº†ä¸€ä¸?Sector,
+	dec		dx											;â”›å°±è·³åˆ°ä¸‹ä¸€ä¸?Sector
 	mov		cx,11
 
-;对比文件�?cmp_filenasm:
+;å¯¹æ¯”æ–‡ä»¶å?cmp_filenasm:
 	cmp		cx,0
 	jz		filename_founded
 	dec		cx
 	lodsb
 	cmp		al,byte[es:di]
 	jz		LABEL_GO_ON
-	;到这里代表文件名匹配不一�?	jmp		filename_different
-; 我们要找�?KERNEL
+	;åˆ°è¿™é‡Œä»£è¡¨æ–‡ä»¶ååŒ¹é…ä¸ä¸€è‡?	jmp		filename_different
+; æˆ‘ä»¬è¦æ‰¾çš?KERNEL
 LABEL_GO_ON:
 	inc		di
-	jmp		cmp_filenasm							;继续循环
+	jmp		cmp_filenasm							;ç»§ç»­å¾ªçŽ¯
 
-;文件名不一�?filename_different:
+;æ–‡ä»¶åä¸ä¸€è‡?filename_different:
 	and		di,0FFE0h
 	add		di,20h
 	mov		si,KERNELFileName
 	jmp		LABEL_SEARCH_FOR_KERNELBIN
 
-;从下个root扇区开始搜�?next_sector:
+;ä»Žä¸‹ä¸ªrootæ‰‡åŒºå¼€å§‹æœç´?next_sector:
 	add		word[read_sector],1
 	jmp		begin_search
 
-;没有找到文件
+;æ²¡æœ‰æ‰¾åˆ°æ–‡ä»¶
 nofound:
 	mov		dh,2										;"No KERNEL."
-	call	DispStr										;显示字符�?	jmp		$											;没有找到KERNEL死循环在这里
+	call	DispStr										;æ˜¾ç¤ºå­—ç¬¦ä¸?	jmp		$											;æ²¡æœ‰æ‰¾åˆ°KERNELæ­»å¾ªçŽ¯åœ¨è¿™é‡Œ
 
-;找到文件
-filename_founded:									;找到 KERNEL 后便来到这里继续
+;æ‰¾åˆ°æ–‡ä»¶
+filename_founded:									;æ‰¾åˆ° KERNEL åŽä¾¿æ¥åˆ°è¿™é‡Œç»§ç»­
 	mov		ax,RootDirSectors
-	and		di,0FFE0h									;di -> 当前条目的开�?	add		di,01Ah										;di -> �?Sector
+	and		di,0FFE0h									;di -> å½“å‰æ¡ç›®çš„å¼€å§?	add		di,01Ah										;di -> é¦?Sector
 	mov		cx,word[es:di]
-	push	cx											;保存�?Sector �?FAT 中的序号
+	push	cx											;ä¿å­˜æ­?Sector åœ?FAT ä¸­çš„åºå·
 	add		cx,ax
-	add		cx,DeltaSectorNo							;cl <- KERNEL的起始扇区号(0-based)
+	add		cx,DeltaSectorNo							;cl <- KERNELçš„èµ·å§‹æ‰‡åŒºå·(0-based)
 	mov		ax,file_addr_segment
 	mov		es,ax										;es <- file_addr_segment
 	mov		bx,file_addr_offset							;bx <- file_addr_offset
-	mov		ax,cx										;ax <- Sector �?
-;加载文件
+	mov		ax,cx										;ax <- Sector å?
+;åŠ è½½æ–‡ä»¶
 loading_file:
-	;每读一个扇区就�?Booting"后面打一个点
+	;æ¯è¯»ä¸€ä¸ªæ‰‡åŒºå°±åœ?Booting"åŽé¢æ‰“ä¸€ä¸ªç‚¹
 	push	ax
 	push	bx
 	mov		ah,0Eh
@@ -121,44 +121,44 @@ loading_file:
 
 	mov		cl, 1
 	call	ReadSector
-	pop		ax											;取出�?Sector �?FAT 中的序号
+	pop		ax											;å–å‡ºæ­?Sector åœ?FAT ä¸­çš„åºå·
 	call	GetFATEntry
 	cmp		ax,0FFFh
 	jz		load_finished
-	push	ax											;保存 Sector �?FAT 中的序号
+	push	ax											;ä¿å­˜ Sector åœ?FAT ä¸­çš„åºå·
 	mov		dx,RootDirSectors
 	add		ax,dx
 	add		ax,DeltaSectorNo
 	add		bx,[BPB_BytsPerSec]
 	jmp		loading_file
 load_finished:
-	;显示"Ready."
+	;æ˜¾ç¤º"Ready."
 	mov		dh,1
 	call	DispStr
 
-	;跳转到已经加载的文件�?	jmp		file_addr_segment:file_addr_offset
+	;è·³è½¬åˆ°å·²ç»åŠ è½½çš„æ–‡ä»¶ä¸?	jmp		file_addr_segment:file_addr_offset
 
-;变量
-	;根目录扇区总数
-	root_sector_num		dw	RootDirSectors	;Root Directory 占用的扇区数, 在循环中会递减至零.
-	read_sector			dw	0				;要读取的扇区�?	bOdd				db	0				;奇数还是偶数
+;å˜é‡
+	;æ ¹ç›®å½•æ‰‡åŒºæ€»æ•°
+	root_sector_num		dw	RootDirSectors	;Root Directory å ç”¨çš„æ‰‡åŒºæ•°, åœ¨å¾ªçŽ¯ä¸­ä¼šé€’å‡è‡³é›¶.
+	read_sector			dw	0				;è¦è¯»å–çš„æ‰‡åŒºå?	bOdd				db	0				;å¥‡æ•°è¿˜æ˜¯å¶æ•°
 
 ;============================================================================
-;字符�?;----------------------------------------------------------------------------
-KERNELFileName		db	"KERNEL     ", 0	; KERNEL 之文件名
-; 为简化代�? 下面每个字符串的长度均为 MessageLength
+;å­—ç¬¦ä¸?;----------------------------------------------------------------------------
+KERNELFileName		db	"KERNEL     ", 0	; KERNEL ä¹‹æ–‡ä»¶å
+; ä¸ºç®€åŒ–ä»£ç ? ä¸‹é¢æ¯ä¸ªå­—ç¬¦ä¸²çš„é•¿åº¦å‡ä¸º MessageLength
 MessageLength		equ	9
-BootMessage:		db	"Booting  "; 9字节, 不够则用空格补齐. 序号 0
-Message1		db	"Ready.   "; 9字节, 不够则用空格补齐. 序号 1
-Message2		db	"No KERNEL"; 9字节, 不够则用空格补齐. 序号 2
+BootMessage:		db	"Booting  "; 9å­—èŠ‚, ä¸å¤Ÿåˆ™ç”¨ç©ºæ ¼è¡¥é½. åºå· 0
+Message1		db	"Ready.   "; 9å­—èŠ‚, ä¸å¤Ÿåˆ™ç”¨ç©ºæ ¼è¡¥é½. åºå· 1
+Message2		db	"No KERNEL"; 9å­—èŠ‚, ä¸å¤Ÿåˆ™ç”¨ç©ºæ ¼è¡¥é½. åºå· 2
 ;============================================================================
 
 
 ;----------------------------------------------------------------------------
-; 函数�? DispStr
+; å‡½æ•°å? DispStr
 ;----------------------------------------------------------------------------
-; 作用:
-;	显示一个字符串, 函数开始时 dh 中应该是字符串序�?0-based)
+; ä½œç”¨:
+;	æ˜¾ç¤ºä¸€ä¸ªå­—ç¬¦ä¸², å‡½æ•°å¼€å§‹æ—¶ dh ä¸­åº”è¯¥æ˜¯å­—ç¬¦ä¸²åºå?0-based)
 DispStr:
 	mov		ax,MessageLength
 	mul		dh
@@ -174,33 +174,33 @@ DispStr:
 	ret
 
 ;----------------------------------------------------------------------------
-; 函数�? ReadSector
+; å‡½æ•°å? ReadSector
 ;----------------------------------------------------------------------------
-; 作用:
-;	从第 ax �?Sector 开�? �?cl �?Sector 读入 es:bx �?ReadSector:
+; ä½œç”¨:
+;	ä»Žç¬¬ ax ä¸?Sector å¼€å§? å°?cl ä¸?Sector è¯»å…¥ es:bx ä¸?ReadSector:
 	; -----------------------------------------------------------------------
-	; 怎样由扇区号求扇区在磁盘中的位置 (扇区�?-> 柱面�? 起始扇区, 磁头�?
+	; æ€Žæ ·ç”±æ‰‡åŒºå·æ±‚æ‰‡åŒºåœ¨ç£ç›˜ä¸­çš„ä½ç½® (æ‰‡åŒºå?-> æŸ±é¢å? èµ·å§‹æ‰‡åŒº, ç£å¤´å?
 	; -----------------------------------------------------------------------
-	; 设扇区号�?x
-	;                           �?柱面�?= y >> 1
-	;       x           �?�?y �?	; -------------- => �?     �?磁头�?= y & 1
-	;  每磁道扇区数     �?	;                   �?�?z => 起始扇区�?= z + 1
+	; è®¾æ‰‡åŒºå·ä¸?x
+	;                           â”?æŸ±é¢å?= y >> 1
+	;       x           â”?å•?y â”?	; -------------- => â”?     â”?ç£å¤´å?= y & 1
+	;  æ¯ç£é“æ‰‡åŒºæ•°     â”?	;                   â”?ä½?z => èµ·å§‹æ‰‡åŒºå?= z + 1
 	push	bp
 	mov		bp,sp
-	sub		esp,2					;辟出两个字节的堆栈区域保存要读的扇区�? byte [bp-2]
+	sub		esp,2					;è¾Ÿå‡ºä¸¤ä¸ªå­—èŠ‚çš„å †æ ˆåŒºåŸŸä¿å­˜è¦è¯»çš„æ‰‡åŒºæ•? byte [bp-2]
 
 	mov		byte[bp-2], cl
-	push	bx						;保存 bx
-	mov		bl,[BPB_SecPerTrk]		;bl: 除数
-	div		bl						;y �?al �? z �?ah �?	inc		ah						;z ++
-	mov		cl,ah					;cl <- 起始扇区�?	mov		dh,al					;dh <- y
-	shr		al,1					;y >> 1 (其实�?y/BPB_NumHeads, 这里BPB_NumHeads=2)
-	mov		ch,al					;ch <- 柱面�?	and		dh,1					;dh & 1 = 磁头�?	pop		bx						;恢复 bx
-	;至此, "柱面�? 起始扇区, 磁头�?全部得到
-	mov		dl,[BS_DrvNum]			;驱动器号 (0 表示 A �?
+	push	bx						;ä¿å­˜ bx
+	mov		bl,[BPB_SecPerTrk]		;bl: é™¤æ•°
+	div		bl						;y åœ?al ä¸? z åœ?ah ä¸?	inc		ah						;z ++
+	mov		cl,ah					;cl <- èµ·å§‹æ‰‡åŒºå?	mov		dh,al					;dh <- y
+	shr		al,1					;y >> 1 (å…¶å®žæ˜?y/BPB_NumHeads, è¿™é‡ŒBPB_NumHeads=2)
+	mov		ch,al					;ch <- æŸ±é¢å?	and		dh,1					;dh & 1 = ç£å¤´å?	pop		bx						;æ¢å¤ bx
+	;è‡³æ­¤, "æŸ±é¢å? èµ·å§‹æ‰‡åŒº, ç£å¤´å?å…¨éƒ¨å¾—åˆ°
+	mov		dl,[BS_DrvNum]			;é©±åŠ¨å™¨å· (0 è¡¨ç¤º A ç›?
 .GoOnReading:
-	mov		ah,2					;�?	mov		al,byte[bp-2]			;�?al 个扇�?	int		13h
-	jc		.GoOnReading			;如果读取错误 CF 会被置为 1, 这时就不停地�? 直到正确为止
+	mov		ah,2					;è¯?	mov		al,byte[bp-2]			;è¯?al ä¸ªæ‰‡åŒ?	int		13h
+	jc		.GoOnReading			;å¦‚æžœè¯»å–é”™è¯¯ CF ä¼šè¢«ç½®ä¸º 1, è¿™æ—¶å°±ä¸åœåœ°è¯? ç›´åˆ°æ­£ç¡®ä¸ºæ­¢
 
 	add		esp,2
 	pop		bp
@@ -208,36 +208,36 @@ DispStr:
 	ret
 
 ;----------------------------------------------------------------------------
-; 函数�? GetFATEntry
+; å‡½æ•°å? GetFATEntry
 ;----------------------------------------------------------------------------
-; 作用:
-;	找到序号�?ax �?Sector �?FAT 中的条目, 结果放在 ax �?;	需要注意的�? 中间需要读 FAT 的扇区到 es:bx �? 所以函数一开始保存了 es �?bx
+; ä½œç”¨:
+;	æ‰¾åˆ°åºå·ä¸?ax çš?Sector åœ?FAT ä¸­çš„æ¡ç›®, ç»“æžœæ”¾åœ¨ ax ä¸?;	éœ€è¦æ³¨æ„çš„æ˜? ä¸­é—´éœ€è¦è¯» FAT çš„æ‰‡åŒºåˆ° es:bx å¤? æ‰€ä»¥å‡½æ•°ä¸€å¼€å§‹ä¿å­˜äº† es å’?bx
 GetFATEntry:
 	push	es
 	push	bx
 	push	ax
 	mov		ax,file_addr_segment		; `.
-	sub		ax,0100h			;  | �?file_addr_segment 后面留出 4K 空间用于存放 FAT
+	sub		ax,0100h			;  | åœ?file_addr_segment åŽé¢ç•™å‡º 4K ç©ºé—´ç”¨äºŽå­˜æ”¾ FAT
 	mov		es, ax				; /
 	pop		ax
 	mov		byte [bOdd],0
 	mov		bx,3
 	mul		bx					;dx:ax = ax * 3
 	mov		bx,2
-	div		bx					;dx:ax / 2  ==>  ax <- �? dx <- 余数
+	div		bx					;dx:ax / 2  ==>  ax <- å•? dx <- ä½™æ•°
 	cmp		dx,0
 	jz		LABEL_EVEN
 	mov		byte[bOdd],1
-LABEL_EVEN:;偶数
-	;现在 ax 中是 FATEntry �?FAT 中的偏移�?下面来计�?FATEntry 在哪个扇区中(FAT占用不止一个扇�?
+LABEL_EVEN:;å¶æ•°
+	;çŽ°åœ¨ ax ä¸­æ˜¯ FATEntry åœ?FAT ä¸­çš„åç§»é‡?ä¸‹é¢æ¥è®¡ç®?FATEntry åœ¨å“ªä¸ªæ‰‡åŒºä¸­(FATå ç”¨ä¸æ­¢ä¸€ä¸ªæ‰‡åŒ?
 	xor		dx,dx			
 	mov		bx,[BPB_BytsPerSec]
 	div		bx					;dx:ax / BPB_BytsPerSec
-; ax <- �?(FATEntry 所在的扇区相对�?FAT 的扇区号)
-; dx <- 余数 (FATEntry 在扇区内的偏�?�?	push	dx
-	mov		bx,0 				;bx <- 0 于是, es:bx = (file_addr_segment - 100):00
-	add		ax,SectorNoOfFAT1 ; 此句之后�?ax 就是 FATEntry 所在的扇区�?	mov		cl,2
-	call	ReadSector 			;读取 FATEntry 所在的扇区, 一次读两个, 避免在边界发生错�? 因为一�?FATEntry 可能跨越两个扇区
+; ax <- å•?(FATEntry æ‰€åœ¨çš„æ‰‡åŒºç›¸å¯¹äº?FAT çš„æ‰‡åŒºå·)
+; dx <- ä½™æ•° (FATEntry åœ¨æ‰‡åŒºå†…çš„åç§?ã€?	push	dx
+	mov		bx,0 				;bx <- 0 äºŽæ˜¯, es:bx = (file_addr_segment - 100):00
+	add		ax,SectorNoOfFAT1 ; æ­¤å¥ä¹‹åŽçš?ax å°±æ˜¯ FATEntry æ‰€åœ¨çš„æ‰‡åŒºå?	mov		cl,2
+	call	ReadSector 			;è¯»å– FATEntry æ‰€åœ¨çš„æ‰‡åŒº, ä¸€æ¬¡è¯»ä¸¤ä¸ª, é¿å…åœ¨è¾¹ç•Œå‘ç”Ÿé”™è¯? å› ä¸ºä¸€ä¸?FATEntry å¯èƒ½è·¨è¶Šä¸¤ä¸ªæ‰‡åŒº
 	pop		dx
 	add		bx,dx
 	mov		ax,[es:bx]
@@ -251,5 +251,5 @@ LABEL_GET_FAT_ENRY_OK:
 	pop		es
 	ret
 
-	times 	510-($-$$)	db	0	; 填充剩下的空间，使生成的二进制代码恰好为512字节
-	dw 		0xaa55				; 结束标志
+	times 	510-($-$$)	db	0	; å¡«å……å‰©ä¸‹çš„ç©ºé—´ï¼Œä½¿ç”Ÿæˆçš„äºŒè¿›åˆ¶ä»£ç æ°å¥½ä¸º512å­—èŠ‚
+	dw 		0xaa55				; ç»“æŸæ ‡å¿—
