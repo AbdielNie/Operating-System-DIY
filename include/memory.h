@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 主函数头文件
- *ExplorerOS/Kernel/include/memory.h
- *version:Alpha
- *7/9/2014 8:30 AM
- */
-
 #ifndef MEMORY_H
 #define MEMORY_H
 
