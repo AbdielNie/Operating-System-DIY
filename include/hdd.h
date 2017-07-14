@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 磁盘支持程序头文件
- *ExplorerOS/Kernel/include/hdd.h
- *version:Alpha
- *7/18/2014 5:48 PM
- */
-
 #ifndef HDD_H_
 #define HDD_H_
 
