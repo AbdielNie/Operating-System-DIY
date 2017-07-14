@@ -1,25 +1,16 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by ÃÔ²ÊºìĞÇ<1@GhostBirdOS.org>
- *Explorer ÄÚºËshellÆ½Ì¨Ö§³Ö´úÂëÍ·
- *ExplorerOS/Kernel/include/shell.h
- *version:Alpha
- *7/5/2014 7:08 PM
- */
-
 #ifndef SHELL
 #define SHELL
 
 #include "types.h"
 
-//×Ö¿â
+//å­—åº“
 extern u8 font[256*16];
-//ÆÁÄ»¿í¶È
+//å±å¹•å®½åº¦
 extern u32 xsize;
 extern u32 ysize;
 
 void inti_shell(void);
-/*Õâ¸öº¯ÊıÁÙÊ±ÓÃ»ã±àÍê³É*/
+/*è¿™ä¸ªå‡½æ•°ä¸´æ—¶ç”¨æ±‡ç¼–å®Œæˆ*/
 void printk(const u8* format, ...);
 int printf(const char *format,...);
 void debug(u32 *address, u32 size);
