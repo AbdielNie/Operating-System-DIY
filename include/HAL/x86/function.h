@@ -1,11 +1,3 @@
-/*
- *Copyright 2013-2014 by 2013-2014 by Explorer OS Developer. All rights reserved.
- *made by ÃÔ²ÊºìĞÇ<1@GhostBirdOS.org>
- *Explorer 0.01 x86Æ½Ì¨Ó²¼ş³éÏó²ãÍ·ÎÄ¼ş
- *Explorer/Kernel/include/HAL/x86/function.h
- *7/14/2014 1:49 PM
- */
-
 #ifndef FUNCTION_H_
 #define FUNCTION_H_
 
@@ -21,44 +13,44 @@ struct TSS_32
 	int es, cs, ss, ds, fs, gs;
 	int ldtr, iomap;
 }TSS;
-//fun_c.cº¯Êı
+//fun_c.cå‡½æ•°
 void init_arch(void);
 void inti_GDT(void);
 void goto_paging(u32 pdt_addr);
 
-//fun_asm.asmº¯Êı
-//È«¾ÖÃèÊö·û±íÊôĞÔ
+//fun_asm.asmå‡½æ•°
+//å…¨å±€æè¿°ç¬¦è¡¨å±æ€§
 #define GDT_G		0x800000
 #define GDT_P		0x8000
 #define GDT_DPL_0	0x00
 #define GDT_DPL_1	0x2000
 #define GDT_DPL_2	0x4000
 #define GDT_DPL_3	0x6000
-/*×¢Òâ:¶¼Îª¿É¶ÁµÄ´úÂë¶Î*/
+/*æ³¨æ„:éƒ½ä¸ºå¯è¯»çš„ä»£ç æ®µ*/
 #define GDT_code_32_conforming		0x401E00
 #define GDT_code_32_non_conforming	0x401A00
-/*ÎªÏòÉÏµÄÊı¾İ¶Î£¬ÏòÏÂµÄÊı¾İ¶ÎÓĞ·çÏÕ£¬²»¿ÉÊ¹ÓÃ*/
+/*ä¸ºå‘ä¸Šçš„æ•°æ®æ®µï¼Œå‘ä¸‹çš„æ•°æ®æ®µæœ‰é£é™©ï¼Œä¸å¯ä½¿ç”¨*/
 #define GDT_data_32 0x401200
-/*ÏµÍ³¶Î*/
+/*ç³»ç»Ÿæ®µ*/
 #define GDT_TSS_data 0x900
-//³õÊ¼»¯¶Î¼Ä´æÆ÷º¯Êı
+//åˆå§‹åŒ–æ®µå¯„å­˜å™¨å‡½æ•°
 void init_seg_reg(u16 selector);
-//ÃèÊö·û±í¼Ä´æÆ÷²Ù×÷º¯Êı
+//æè¿°ç¬¦è¡¨å¯„å­˜å™¨æ“ä½œå‡½æ•°
 void write_IDTR(u32 base, u16 size);
 void write_TR(u16 select);
 void write_GDTR(u32 base, u16 size);
-//GDT²Ù×÷º¯Êı
+//GDTæ“ä½œå‡½æ•°
 void clean_GDT(void);
 u16 creat_GDT(u32 base_addr, u32 length, u32 attribute);
-//IDT²Ù×÷º¯Êı
+//IDTæ“ä½œå‡½æ•°
 void clean_IDT(void);
 void creat_IDT(u32 number, u32 selector, u32 offset, u32 attribute);
-//¿ØÖÆ¼Ä´æÆ÷¶ÁĞ´
+//æ§åˆ¶å¯„å­˜å™¨è¯»å†™
 u32 read_cr0(void);
 void write_CR0(u32 cr0);
 u32 read_cr3(void);
 void write_CR3(u32 cr0);
-//ÌØÊâ´óĞ¡ÄÚ´æ¶ÁĞ´º¯Êı
+//ç‰¹æ®Šå¤§å°å†…å­˜è¯»å†™å‡½æ•°
 void write_mem24(u32 addr, u32 data);
 
 
