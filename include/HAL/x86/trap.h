@@ -1,11 +1,3 @@
-/*
- *Copyright 2013-2014 by 2013-2014 by Explorer OS Developer. All rights reserved.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 0.01 trap.c头
- *Explorer/Kernel/include/HAL/x86/trap.h
- *7/26/2014 6:33 PM
- */
-
 #ifndef TRAP_H_
 #define TRAP_H_
 
