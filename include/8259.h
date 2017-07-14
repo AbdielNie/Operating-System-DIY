@@ -1,11 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 8259头文件
- *ExplorerOS/Kernel/include/8259.c
- *version:Alpha
- *7/26/2014 5:26 PM
- */
 
 #ifndef PIC_H_
 #define PIC_H_
