@@ -1,10 +1,3 @@
-;Copyright 2013-2014 by Explorer Developer.
-;made by 迷彩红星<1@GhostBirdOS.org>
-;Explorer 8259\定时器支持程序汇编文件
-;ExplorerOS/Kernel/include/timer_asm.asm
-;version:Alpha
-;7/28/2014 4:26 PM
-
 ;全局变量
 extern	thread_union_point
 ;全局函数
