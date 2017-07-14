@@ -1,17 +1,10 @@
-/*
- *Copyright 2013-2014 by 2013-2014 by Explorer OS Developer. All rights reserved.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 0.01 io.asm头文件
- *Explorer/Kernel/include/HAL/x86/io.h
- *7/26/2014 7:05 PM
- */
 
 #ifndef IO_H_
 #define IO_H_
 
 #include "../../types.h"
 
-//输入输出函数
+//杈撳叆杈撳嚭鍑芥暟
 void io_hlt(void);
 void io_cli(void);
 void io_sti(void);
