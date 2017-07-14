@@ -1,9 +1,3 @@
-;Copyright 2013-2014 by Explorer Developer.
-;made by 迷彩红星<1@GhostBirdOS.org>
-;Explorer x86硬件抽象层 汇编代码部分头定义
-;ExplorerOS/Kernel/include/HAL/x86/function.asm
-;version:Alpha
-;7/25/2014 9:03 PM
 ;中断描述符表属性
 %define IDT_P		0x8000
 %define IDT_DPL_0	0x00
