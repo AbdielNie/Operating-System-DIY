@@ -1,11 +1,3 @@
-/*
- *Copyright 2013-2014 by 2013-2014 by Explorer OS Developer. All rights reserved.
- *made by ÃÔ²ÊºìĞÇ<1@GhostBirdOS.org>
- *stdarg.h
- *Explorer/Kernel/include/stdarg.h
- *8/15/2014 12:15 AM
- */
-
 #ifndef _STDARG_H_
 #define _STDARG_H_
 
@@ -14,7 +6,7 @@
 typedef char* va_list;
 #endif
 
-/*tÀàĞÍ²ÎÊıÔÚ²ÎÊıÁĞ±í(¶ÑÕ»ÖĞ)ËùĞè¿Õ¼äµÄ´óĞ¡*/
+/*tç±»å‹å‚æ•°åœ¨å‚æ•°åˆ—è¡¨(å †æ ˆä¸­)æ‰€éœ€ç©ºé—´çš„å¤§å°*/
 
 #define __va_argsiz(t)    \
     (((sizeof(t) + sizeof(int) - 1) / sizeof(int)) * sizeof(int))
