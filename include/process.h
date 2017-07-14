@@ -1,11 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 进程管理代码头文件
- *ExplorerOS/Kernel/include/peocess.h
- *version:Alpha
- *7/29/2014 4:59 PM
- */
 
 #ifndef PROCESS_H_
 #define PROCESS_H_
