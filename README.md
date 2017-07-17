@@ -1,4 +1,4 @@
-# Operating-System-DIY  An operating ystem made by myself
+# Operating-System-DIY  An operating system made by myself
  
  All the codes are theoretical codes。
 *** 
