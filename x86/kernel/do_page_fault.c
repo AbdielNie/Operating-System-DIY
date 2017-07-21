@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by √‘≤ ∫Ï–«<1@GhostBirdOS.org>
- *Explorer “≥π ’œ¥¶¿Ì≥Ã–Ú
- *ExplorerOS/Kernel/memory/do_page_fault.c
- *version:Alpha
- *8/7/2014 10:46 AM
- */
-
 #include <process.h>
 #include "../include/memory.h"
 #include <types.h>
@@ -15,23 +6,23 @@ void do_page_fault(u32 error_code)
 {
 	printk(".");
 	u32 cr2, *pdt_address, old_cr3;
-	/*∂¡»°–≈œ¢*/
+	/*ËØªÂèñ‰ø°ÊÅØ*/
 	cr2 = read_CR2();
 	pdt_address = (u32 *) (read_CR3() & 0xfffff000);
-	/*ªª…œƒ⁄∫Àµƒπ‹¿Ì“≥ƒø¬º±Ì*/
+	/*Êç¢‰∏äÂÜÖÊ†∏ÁöÑÁÆ°ÁêÜÈ°µÁõÆÂΩïË°®*/
 	old_cr3 = read_CR3();
 	write_CR3(pdt);
-	if ((error_code == 2) | (error_code == 0))/* «»±“≥“˝∑¢µƒ÷–∂œ*/
+	if ((error_code == 2) | (error_code == 0))/*ÊòØÁº∫È°µÂºïÂèëÁöÑ‰∏≠Êñ≠*/
 	{
-		if ((pdt_address[(cr2 >> 22)] & 1) == 0)/*»Áπ˚√ª”–“≥±Ì*/
+		if ((pdt_address[(cr2 >> 22)] & 1) == 0)/*Â¶ÇÊûúÊ≤°ÊúâÈ°µË°®*/
 		{
 			pdt_address[(cr2 >> 22)] = (get_free_page() | 0x7);
-			/*«Âø’’‚∏ˆ“≥*/
-			memset((u8 *) (pdt_address[(cr2 >> 22)]), 0x00, ((4096 - 256) / 4));/*∂‘∫Û√Êµƒƒ⁄¥Ê«¯”Ú±ÿ–Î«Â0*/
+			/*Ê∏ÖÁ©∫Ëøô‰∏™È°µ*/
+			memset((u8 *) (pdt_address[(cr2 >> 22)]), 0x00, ((4096 - 256) / 4));/*ÂØπÂêéÈù¢ÁöÑÂÜÖÂ≠òÂå∫ÂüüÂøÖÈ°ªÊ∏Ö0*/
 		}
-		/*“ª∂®»±…Ÿ“≥*/
+		/*‰∏ÄÂÆöÁº∫Â∞ëÈ°µ*/
 		((u32 *) (pdt_address[(cr2 >> 22)] & 0xfffff000))[(cr2 & 0x3FF000) >> 12] = (get_free_page() | 0x7);
-		/*œ‘ æ–≈œ¢º∞∑µªÿ*/
+		/*ÊòæÁ§∫‰ø°ÊÅØÂèäËøîÂõû*/
 		//printk("Page fault:allocated.%X",pdt_address[(cr2 >> 22)]);
 		write_CR3(old_cr3);
 		return;
