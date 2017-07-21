@@ -1,10 +1,3 @@
-;Copyright 2013-2014 by Explorer Developer.
-;made by Hu wenjie(CN)<1@GhostBirdOS.org>
-;Explorer part of CPU
-;Explorer 0.01/arch/x86/kernel/cpu.asm
-;version:Alpha
-;8/30/2014 8:16 PM
-
 ;global varies
 global	CPU_MAXID
 global	CPU_EMAXID
