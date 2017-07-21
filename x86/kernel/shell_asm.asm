@@ -1,9 +1,3 @@
-;Copyright 2013-2014 by 2013-2014 by Explorer OS Developer. All rights reserved.
-
-;Explorer 0.01  shell的汇编部分
-;File name:Explorer\Kernel\shell\fun_asm.asm
-;2014.7.14 11:16 PM
-
 ;外部函数
 extern	put_font
 %macro fun_put_font 1
