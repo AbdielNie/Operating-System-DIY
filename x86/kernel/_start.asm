@@ -1,10 +1,3 @@
-;Copyright 2013-2014 by Explorer Developer.
-;made by 迷彩红星<1@GhostBirdOS.org>
-;Explorer 起始函数
-;Explorer 0.01/arch/kernel/_start.asm
-;version:Alpha
-;7/9/2014 8:25 AM
-
 ;全局变量
 ;全局函数
 extern	io_hlt
