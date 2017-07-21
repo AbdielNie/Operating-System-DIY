@@ -1,13 +1,4 @@
 /*
- *Copyright 2013-2014 by Explorer Developer.
- *made by 迷彩红星<1@GhostBirdOS.org>
- *Explorer 8259\8259A支持程序
- *ExplorerOS\Kernel\drivers\i8259.c
- *version:Alpha
- *7/26/2014 5:02 PM
- */
-
-/*
  *NOTICE
  *8259/8259A为可编程中断控制器(Programmable interrupt controller,PIC)。
  *直接连接到CPU的8259为主8259(master PIC)，连接到主8259的8259都为从8259(slave PIC)。
@@ -49,11 +40,6 @@ void init_PIC(void)
 	io_sti();/*开启可屏蔽中断*/
 }
 
-/*made by 迷彩红星<1@ghostbirdos.org>
- *开放8259特定中断的函数
- *入口：IRQ号
- *出口：(-1):错误 0:正确
- */
 int32 open_PIC(u8 IRQ)
 {
 	if (IRQ > 15)
