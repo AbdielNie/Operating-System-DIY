@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by Hu wenjie(CN)<1@GhostBirdOS.org>
- *Explorer initialization in the start of kernel
- *Explorer 0.01/arch/x86/kernel/kernel_start.c
- *version:Alpha
- *8/26/2014 11:06 PM
- */
-
 #include "../include/kernel_start.h"
 #include "../include/CPU.h"
 
