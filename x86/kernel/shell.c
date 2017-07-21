@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by Hu wenjie(CN)<1@GhostBirdOS.org>
- *Explorer Shell
- *Explorer 0.01/shell/shell.c
- *version:Alpha
- *7/5/2014 7:08 PM
- */
- 
 #include "../include/shell.h"
 #include <types.h>
 
@@ -23,7 +14,7 @@ struct shell{
 }shell;
 void init_shell(void)
 {
-	/*³õÊ¼»¯Ä£ÄâÎÄ±¾Ä£Ê½*/
+	/*åˆå§‹åŒ–æ¨¡æ‹Ÿæ–‡æœ¬æ¨¡å¼*/
 	shell.width = 100;
 	shell.height = 30;
 	shell.x = (xsize - (shell.width * 8))/2;
@@ -32,7 +23,7 @@ void init_shell(void)
 	shell.size = shell.width * shell.height;
 	shell.color = 0xffffffff;
 	/*display information label*/
-	draw_square(0, 0, xsize, 16, 0xff4f2f4f);/*×ÏÂŞÀ¼É«*/
+	draw_square(0, 0, xsize, 16, 0xff4f2f4f);/*ç´«ç½—å…°è‰²*/
 	put_string(0, 0, 0xffffffff, "Ghost Bird OS 0.02 Alpha.");
 	/*display information of kernel and copyright*/
 	color(0xffffff00);
@@ -53,7 +44,7 @@ void debug(u32 *address, u32 size)
 	return;
 }
 
-/*ÏòÉÏ¹öÆÁ¹¦ÄÜº¯Êı*/
+/*å‘ä¸Šæ»šå±åŠŸèƒ½å‡½æ•°*/
 void scr_up(void)
 {
 	u32 x,y;
@@ -69,38 +60,38 @@ void scr_up(void)
 	return;
 }
 
-/*ÉèÖÃÑÕÉ«*/
+/*è®¾ç½®é¢œè‰²*/
 void color(u32 color)
 {
 	shell.color = color;
 }
 
-/*Êä³ö×Ö*/
+/*è¾“å‡ºå­—*/
 void put_font(u8 ascii)
 {
-	/*»»ĞĞ¼üµÄÅĞ¶Ï*/
+	/*æ¢è¡Œé”®çš„åˆ¤æ–­*/
 	if (ascii == 0x0a)
 	{
 		shell.cursor -= (shell.cursor % shell.width);
 		shell.cursor += shell.width;
 		return;
 	}
-	/*¶Ô¿ØÖÆ×Ö·ûµÄÅĞ¶Ï*/
+	/*å¯¹æ§åˆ¶å­—ç¬¦çš„åˆ¤æ–­*/
 	if (ascii < 0x20)
 	{
 		return;
 	}
-	/*¶ÔÊÇ·ñĞèÒª¹öÆÁÅĞ¶Ï*/
+	/*å¯¹æ˜¯å¦éœ€è¦æ»šå±åˆ¤æ–­*/
 	if (shell.cursor >= shell.size) {
 		scr_up();
 	}
-	/*ÓÉÄ£ÄâÎÄ±¾Ä£Ê½²ÎÊıµ½Êµ¼ÊÍ¼ĞÎÄ£Ê½µÄ×ª»»*/
+	/*ç”±æ¨¡æ‹Ÿæ–‡æœ¬æ¨¡å¼å‚æ•°åˆ°å®é™…å›¾å½¢æ¨¡å¼çš„è½¬æ¢*/
 	u32 x, y;
 	x = shell.x + (shell.cursor % shell.width) * 8;
 	y = shell.y + (shell.cursor / shell.width) * 16;
-	/*µ÷ÓÃÏÔÊ¾º¯Êı*/
+	/*è°ƒç”¨æ˜¾ç¤ºå‡½æ•°*/
 	draw_font(x, y, shell.color, ascii);
-	/*Ä£Äâ¹â±êÖ¸ÏòÏÂÒ»¸öµ¥Î»*/
+	/*æ¨¡æ‹Ÿå…‰æ ‡æŒ‡å‘ä¸‹ä¸€ä¸ªå•ä½*/
 	shell.cursor ++;
 }
 
@@ -114,10 +105,10 @@ put_string(u32 x, u32 y, u32 color, u8 *string)
 	}
 }
 
-/*ÏÔÊ¾×Ö*/
+/*æ˜¾ç¤ºå­—*/
 void draw_font(u32 x, u32 y, u32 color, u8 ascii)
 {
-	u32 p, i, font_offset;/*×Ö¿âÆ«ÒÆÁ¿*/
+	u32 p, i, font_offset;/*å­—åº“åç§»é‡*/
 	u8 d;
 	font_offset = ascii * 16;
 	for (i = 0; i < 16; i++)
