@@ -1,12 +1,3 @@
-/*
- *Copyright 2013-2014 by Explorer Developer.
- *made by Hu wenjie(CN)<1@GhostBirdOS.org>
- *Explorer 8259 head
- *Explorer 0.01/arch/x86/include/i8259.h
- *version:Alpha
- *7/26/2014 5:26 PM
- */
-
 #include<stdlib.h>
 #include<types.h>
 #include "../include/trap.h"
@@ -23,7 +14,7 @@ void init_PIT(void)
 	current_task = NULL;
 	/*register PIT to PIC*/
 	register_PIC(0, &int_PIT, "intel 8254");
-	/*��ʼ��Ƶ��*/
+	/*³õÊ¼»¯ÆµÂÊ*/
 	io_out8(PIT_CTRL, 0x34);
 	io_out8(PIT_CNT0, LATCH & 0xff);
 	io_out8(PIT_CNT0, LATCH >> 8);
