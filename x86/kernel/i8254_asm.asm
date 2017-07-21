@@ -1,10 +1,3 @@
-;Copyright 2013-2014 by Explorer Developer.
-;made by Hu wenjie(CN)<1@GhostBirdOS.org>
-;Explorer i8254 support
-;Explorer 0.01/arch/x86/kernel/i8259_asm.asm
-;version:Alpha
-;7/28/2014 4:26 PM
-
 ;global	varies
 extern	thread_union_point
 ;global function
